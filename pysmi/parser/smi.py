@@ -1429,6 +1429,17 @@ class LowcaseTypeIdentifier:
         p[0] = ('row', p[1])
 
 
+# noinspection PyIncorrectDocstring
+class LowcaseTypeName:
+    # tolerate lowercase type names in type declarations
+    @staticmethod
+    def p_typeName(self, p):
+        """typeName : UPPERCASE_IDENTIFIER
+        | LOWERCASE_IDENTIFIER
+        | typeSMI"""
+        p[0] = p[1]
+
+
 relaxedGrammar = {
     "supportSmiV1Keywords": [
         SupportSmiV1Keywords.p_importedKeyword,
@@ -1448,6 +1459,7 @@ relaxedGrammar = {
     ],
     "noCells": [NoCells.p_CreationPart],
     "lowcaseTypeIdentifier": [LowcaseTypeIdentifier.p_row],
+    "lowcaseTypeName": [LowcaseTypeName.p_typeName],
 }
 
 
@@ -1475,6 +1487,7 @@ def parserFactory(**grammarOptions):
         * curlyBracesAroundEnterpriseInTrap - tolerate curly braces around enterprise ID in TRAP MACRO
         * noCells - tolerate missing cells (XXX)
         * lowcaseTypeIdentifier - tolerate lowercase type identifiers in SEQUENCE OF
+        * lowcaseTypeName - tolerate lowercase type names in type declarations
 
     Examples:
 

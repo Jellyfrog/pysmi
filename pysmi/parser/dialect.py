@@ -27,6 +27,7 @@ smi_v1_relaxed.update(
     curlyBracesAroundEnterpriseInTrap=True,
     noCells=True,
     lowcaseTypeIdentifier=True,
+    lowcaseTypeName=True,
 )
 
 # Compatibility API
