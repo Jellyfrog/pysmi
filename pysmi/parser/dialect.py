@@ -28,6 +28,7 @@ smi_v1_relaxed.update(
     noCells=True,
     lowcaseTypeIdentifier=True,
     lowcaseTypeName=True,
+    namedConstraintValue=True,
 )
 
 # Compatibility API

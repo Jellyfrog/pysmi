@@ -536,6 +536,7 @@ relaxedGrammar = {
     "noCells": [],
     "lowcaseTypeIdentifier": [],
     "lowcaseTypeName": [],
+    "namedConstraintValue": [],
 }
 
 

@@ -1440,6 +1440,23 @@ class LowcaseTypeName:
         p[0] = p[1]
 
 
+# noinspection PyIncorrectDocstring
+class NamedConstraintValue:
+    # tolerate identifiers as named constraint values in integer subtypes
+    # e.g. SYNTAX Unsigned32 (WAN7 | WAN8) where WAN7/WAN8 are defined TCs
+    @staticmethod
+    def p_value(self, p):
+        """value : NEGATIVENUMBER
+        | NUMBER
+        | NEGATIVENUMBER64
+        | NUMBER64
+        | HEX_STRING
+        | BIN_STRING
+        | UPPERCASE_IDENTIFIER
+        | LOWERCASE_IDENTIFIER"""
+        p[0] = p[1]
+
+
 relaxedGrammar = {
     "supportSmiV1Keywords": [
         SupportSmiV1Keywords.p_importedKeyword,
@@ -1460,6 +1477,7 @@ relaxedGrammar = {
     "noCells": [NoCells.p_CreationPart],
     "lowcaseTypeIdentifier": [LowcaseTypeIdentifier.p_row],
     "lowcaseTypeName": [LowcaseTypeName.p_typeName],
+    "namedConstraintValue": [NamedConstraintValue.p_value],
 }
 
 
@@ -1488,6 +1506,7 @@ def parserFactory(**grammarOptions):
         * noCells - tolerate missing cells (XXX)
         * lowcaseTypeIdentifier - tolerate lowercase type identifiers in SEQUENCE OF
         * lowcaseTypeName - tolerate lowercase type names in type declarations
+        * namedConstraintValue - tolerate identifiers as named constraint values in integer subtypes
 
     Examples:
 
