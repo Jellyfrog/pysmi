@@ -42,6 +42,7 @@ class SymtableCodeGen(AbstractCodeGen):
             "Unsigned32",
             "IpAddress",  # XXX
             "MibIdentifier",
+            "Opaque",  # bug in some MIBs (e.g. JUNIPER-SMI)
         ),  # OBJECT IDENTIFIER
         "SNMPv2-TC": (
             "DisplayString",
